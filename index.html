@@ -127,14 +127,61 @@
     }
     .nav-links a:hover{color:var(--rose-500)}
 
+
+    /* Mountain banner */
+    .photo-banner{
+      position:relative;
+      min-height:390px;
+      display:flex;
+      align-items:flex-end;
+      background:
+        linear-gradient(180deg, rgba(38,34,36,.10) 15%, rgba(38,34,36,.68) 100%),
+        url("images/hero.jpg") center 52% / cover no-repeat;
+      overflow:hidden;
+    }
+    .photo-banner::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:110px;
+      background:linear-gradient(180deg, transparent, rgba(255,250,251,.18));
+      pointer-events:none;
+    }
+    .banner-copy{
+      position:relative;
+      z-index:2;
+      padding:60px 0 54px;
+      color:#fff;
+    }
+    .banner-copy .mini{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-weight:800;
+      font-size:.76rem;
+      opacity:.86;
+      margin-bottom:10px;
+    }
+    .banner-copy h1{
+      color:#fff;
+      margin:0 0 8px;
+      font-size:clamp(3rem,6.8vw,6.4rem);
+      text-shadow:0 2px 24px rgba(0,0,0,.22);
+    }
+    .banner-copy p{
+      margin:0;
+      max-width:760px;
+      font-size:clamp(1rem,2vw,1.22rem);
+      color:rgba(255,255,255,.92);
+    }
+
     /* Hero */
     .hero{
-      min-height:680px;
+      min-height:auto;
       display:grid;
-      grid-template-columns:1.15fr .85fr;
+      grid-template-columns:1.1fr .9fr;
       align-items:center;
       gap:64px;
-      padding:80px 0 70px;
+      padding:72px 0 76px;
       position:relative;
       overflow:hidden;
     }
@@ -221,61 +268,29 @@
       justify-content:center;
     }
     .portrait-card{
-      width:min(380px,90%);
+      width:min(390px,90%);
       aspect-ratio:4/5;
       border-radius:38px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.96), rgba(244,227,233,.90));
+      background:#fff;
       box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,.9);
+      border:8px solid rgba(255,255,255,.92);
       position:relative;
       overflow:hidden;
-      display:grid;
-      place-items:center;
     }
-    .portrait-card::before{
-      content:"";
-      position:absolute;
-      width:240px;
-      height:240px;
-      border-radius:50%;
-      background:var(--rose-200);
-      top:-70px;
-      right:-60px;
+    .portrait-card img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      object-position:center 35%;
     }
     .portrait-card::after{
       content:"";
       position:absolute;
-      width:180px;
-      height:180px;
-      border-radius:50%;
-      background:#d8d3d6;
-      left:-80px;
-      bottom:-50px;
-    }
-    .monogram{
-      width:180px;
-      height:180px;
-      border-radius:50%;
-      background:linear-gradient(145deg,var(--rose-300),#d7d2d5);
-      display:grid;
-      place-items:center;
-      color:#fff;
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:4rem;
-      letter-spacing:-.05em;
-      z-index:2;
-      box-shadow:inset 0 0 0 14px rgba(255,255,255,.28);
-    }
-    .art-note{
-      position:absolute;
-      bottom:34px;
-      z-index:2;
-      color:var(--gray-600);
-      font-size:.82rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      font-weight:700;
+      inset:0;
+      box-shadow:inset 0 0 0 1px rgba(128,82,98,.08);
+      border-radius:30px;
+      pointer-events:none;
     }
     .dot{
       position:absolute;
@@ -545,6 +560,7 @@
     }
 
     @media (max-width:900px){
+      .photo-banner{min-height:330px;background-position:center 48%}
       .hero,.section-header,.about-grid,.contact-box{
         grid-template-columns:1fr;
       }
@@ -588,12 +604,21 @@
   </header>
 
   <main>
-    <section id="home" class="container hero">
+    <section id="home" class="photo-banner" aria-label="Mountain landscape banner">
+      <div class="container banner-copy">
+        <div class="mini">Academic Website</div>
+        <h1>Wasamon Jantai</h1>
+        <p>Assistant Professor · Department of Mathematics and Computer Science · Chulalongkorn University</p>
+      </div>
+    </section>
+
+    <section class="container hero">
       <div>
-        <div class="eyebrow">Academic Website</div>
-        <h1>Wasamon<br><span class="surname">Jantai</span></h1>
+        <div class="eyebrow">Probability · Approximation · Stein's Method</div>
+        <h2 style="font-size:clamp(2.45rem,4.8vw,4.7rem);margin-bottom:22px;">Research in probability and distributional approximation.</h2>
         <p class="hero-subtitle">
-          Assistant Professor · Department of Mathematics and Computer Science
+          My research focuses on probability theory, Stein's method, distributional approximation,
+          stochastic processes, and applications of probabilistic approximation techniques.
         </p>
         <p class="hero-meta">
           Faculty of Science, Chulalongkorn University · Bangkok, Thailand
@@ -602,19 +627,16 @@
         <div class="hero-actions">
           <a class="btn btn-primary" href="#research">Explore Research</a>
           <a class="btn btn-secondary" href="mailto:wasamon.j@chula.ac.th">Email Me</a>
-          <!-- Put your CV PDF in the same folder and name it cv.pdf -->
+          <!-- Put your CV PDF in this same folder and name it cv.pdf -->
           <a class="btn btn-secondary" href="cv.pdf" target="_blank" rel="noopener">Curriculum Vitae</a>
         </div>
       </div>
 
-      <div class="hero-art" aria-label="Decorative portrait area">
+      <div class="hero-art" aria-label="Profile photograph">
         <span class="dot one"></span>
         <span class="dot two"></span>
         <div class="portrait-card">
-          <!-- Replace this WJ monogram with a portrait later if you want:
-               <img src="profile.jpg" alt="Wasamon Jantai" style="width:100%;height:100%;object-fit:cover;"> -->
-          <div class="monogram">WJ</div>
-          <div class="art-note">Probability · Approximation · Stein's Method</div>
+          <img src="images/profile.jpg" alt="Wasamon Jantai">
         </div>
       </div>
     </section>
